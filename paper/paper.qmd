@@ -1,0 +1,75 @@
+---
+title: "My title"
+subtitle: "My subtitle if needed"
+author: 
+  - First author
+  - Another author
+thanks: "Code and data are available at: [https://github.com/RohanAlexander/starter_folder](https://github.com/RohanAlexander/starter_folder)."
+date: today
+date-format: long
+abstract: "First sentence. Second sentence. Third sentence. Fourth sentence."
+format: pdf
+number-sections: true
+bibliography: references.bib
+---
+
+```{r}
+#| include: false
+#| warning: false
+#| message: false
+library(knitr)
+library(tidyverse)
+```
+
+
+```{r}
+#| label: tbl-forecast-summary
+#| tbl-cap: "Forecasted Transportation Services Import by Region (2024–2028)"
+#| echo: false
+#| tbl-pos: "H"
+
+# Create the final_table data frame
+final_table <- data.frame(
+  Region = rep(c(
+    "South Asia", "Middle East & North Africa", "North America", 
+    "Latin America", "Europe & Central Asia", "East Asia"
+  ), each = 5),
+  Time = rep(2024:2028, times = 6),
+  `Point Forecast` = c(
+    243, 243, 243, 243, 243,        # South Asia
+    584, 584, 584, 584, 584,        # Middle East & North Africa
+    36.6, 36.6, 36.6, 36.6, 36.6,   # North America
+    999, 1078, 1113, 1113, 1113,    # Latin America
+    1153, 1294, 1294, 1294, 1294,   # Europe & Central Asia
+    661, 661, 661, 661, 661         # East Asia
+  ),
+  `95 Lower` = c(
+    382, 387, 391, 355, 343,        # South Asia
+    609, 609, 609, 609, 609,        # Middle East & North Africa
+    70.0, 71.3, 73.0, 71.2, 70.6,   # North America
+    1142, 1169, 1172, 1172, 1172,   # Latin America
+    1284, 1288, 1325, 1317, 1309,   # Europe & Central Asia
+    1087, 1085, 1077, 1090, 1038    # East Asia
+  ),
+  `95 Upper` = c(
+    399, 304, 349, 366, 380,        # South Asia
+    607, 607, 607, 607, 607,        # Middle East & North Africa
+    72.9, 68.8, 57.7, 60.9, 58.7,   # North America
+    1186, 1202, 1228, 1232, 1232,   # Latin America
+    1356, 1357, 1375, 1367, 1399,   # Europe & Central Asia
+    1090, 1056, 1014, 1045, 1000    # East Asia
+  )
+)
+
+# Format the table with kable
+kable(final_table, format = "latex", booktabs = TRUE)
+```
+
+@tbl-forecast-summary
+
+\newpage
+
+
+# References
+
+
